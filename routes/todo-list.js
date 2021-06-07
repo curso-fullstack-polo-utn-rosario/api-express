@@ -12,5 +12,4 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
     res.json(todoRepository.addItem(req.body));
   });
-
-  module.exports = router;
+module.exports = router;
