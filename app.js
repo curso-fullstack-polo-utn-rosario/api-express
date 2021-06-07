@@ -12,7 +12,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
 app.use('/todo', todoRouter);
 
-
+app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    console.log(err);
+    res.status(err.status || 500 ).json({
+        error: err.message
+    });
+  });
 module.exports = app;
