@@ -2,7 +2,7 @@ const express = require('express');
 const app = require('../app');
 const router = express.Router();
 
-const todoRepository = require('../todo-repository');
+const todoRepository = require('../todo-repository-mongo');
 
 function validTodoItem(item) {
   return item.description !== undefined &&
@@ -32,12 +32,9 @@ router.get('/', function(req, res) {
   if (search && search !== '') {
     items = todoRepository.search(search);
   } else {
-     items = todoRepository.getItems(); 
+     items = todoRepository.getItemsForResponse(res); 
   }
-  res.json({
-    items, 
-    length: items.length
-  });
+  
 });
 
 router.get('/:id', function(req, res) {
