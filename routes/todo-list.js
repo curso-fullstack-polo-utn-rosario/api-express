@@ -2,7 +2,7 @@ const express = require('express');
 const app = require('../app');
 const router = express.Router();
 
-const todoRepository = require('../todo-repository-mongo');
+const todoRepository = require('../todo-repository-mysql');
 
 function validTodoItem(item) {
   return item.description !== undefined &&
